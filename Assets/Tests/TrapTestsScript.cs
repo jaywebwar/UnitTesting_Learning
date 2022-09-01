@@ -13,12 +13,13 @@ public class TrapTestsScript
         //ARRANGE
         Trap trap = new Trap();
         IPlayer player = Substitute.For<IPlayer>();
+        player.Health.Returns(10);//Instead of assignment, interfaces should use .Returns()
 
         //ASSIGN
         trap.DamagePlayerForEnteringTrap(player);
 
         //ASSERT
-        Assert.AreEqual(-1, player.Health);
+        Assert.AreEqual(9, player.Health);
     }
 
     [Test]
